@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 export interface Trinkort {
   title: string;
@@ -25,6 +26,8 @@ export class SelectKneipenlisteComponent implements OnInit {
   displayedColumns: string[] = ['kneipe', 'selected'];
   dataSource = new MatTableDataSource(TRINKORTE_DEMO_DATA);
 
+  selectedItems: Trinkort[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -33,6 +36,16 @@ export class SelectKneipenlisteComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  updateItem(item: Trinkort, event: MatCheckboxChange): void{
+    let index = this.selectedItems.indexOf(item);
+    item.selected = event.checked;
+    if(item.selected){
+      if(index == -1) this.selectedItems.push(item);
+    }else {
+      if(index != -1) this.selectedItems.splice(index, 1);
+    }
   }
 
 }
