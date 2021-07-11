@@ -1,0 +1,29 @@
+.mat-card {
+  margin: 10px;
+}
+
+#typeForm {
+  .mat-radio-button {
+    margin-top: 12px;
+  }
+}
+
+form {
+  * {
+    margin-right: 10px;
+  }
+}
+
+#searchbar {
+  width: 100%;
+}
+
+.bt-next {
+  right: 20px;
+  position: absolute;
+}
+
+.bt-back {
+  left: 20px;
+  position: absolute;
+}

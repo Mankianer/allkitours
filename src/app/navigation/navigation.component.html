@@ -5,15 +5,15 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Dashboard</a>
-      <a mat-list-item href="#">Kneipentour suchen</a>
-      <a mat-list-item href="#">Kneipentour Liste</a>
-      <a mat-list-item href="#">Kneipentour erstellen</a>
-      <a mat-list-item href="#">Kneipentour Verlauf</a>
-      <a mat-list-item href="#">Kneipen Suchen</a>
-      <a mat-list-item href="#">Session Verwalten</a>
-      <a mat-list-item href="#">Session Verlauf</a>
-      <a mat-list-item href="#">Anmelden / Profil</a>
+      <a mat-list-item href="/dashboard">Dashboard</a>
+      <a mat-list-item href="#" disabled>Kneipentour suchen</a>
+      <a mat-list-item href="#" disabled>Kneipentour Liste</a>
+      <a mat-list-item href="/kneipentour/create">Kneipentour erstellen</a>
+      <a mat-list-item href="#" disabled>Kneipentour Verlauf</a>
+      <a mat-list-item href="#" disabled>Kneipen Suchen</a>
+      <a mat-list-item href="#" disabled>Session Verwalten</a>
+      <a mat-list-item href="#" disabled>Session Verlauf</a>
+      <a mat-list-item href="#" disabled>Anmelden / Profil</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

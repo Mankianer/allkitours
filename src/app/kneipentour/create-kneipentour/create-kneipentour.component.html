@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Kneipentour erstellen</mat-card-title>
+  </mat-card-header>
+  <button mat-raised-button (click)="finish()">Test</button>
+  <mat-card-content>
+<!-- User Input -->
+    <mat-stepper #stepper linear="true">
+      <mat-step [stepControl]="typeFormGroup">
+        <form [formGroup]="typeFormGroup" id="typeForm">
+          <ng-template matStepLabel>Wähle Kneipentour Typ</ng-template>
+          <mat-radio-group formControlName="type">
+            <mat-radio-button value="A">Typ A</mat-radio-button>
+            <mat-radio-button value="B">Typ B</mat-radio-button>
+          </mat-radio-group>
+          <div>
+            <button mat-raised-button matStepperNext color="primary" class="bt-next">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="trinkorteChooseFormGroup" label="Fill out your address">
+        <form [formGroup]="trinkorteSearchFormGroup">
+          <mat-form-field appearance="fill">
+            <mat-label>Standort</mat-label>
+            <input matInput formControlName="position">
+            <mat-icon matSuffix>place</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Einstellung</mat-label>
+            <input matInput formControlName="options">
+            <mat-icon matPrefix>settings</mat-icon>
+          </mat-form-field>
+          <div></div>
+          <mat-form-field appearance="fill" id="searchbar">
+            <mat-label>searchbar</mat-label>
+            <input matInput formControlName="search">
+            <mat-icon matPrefix>search</mat-icon>
+          </mat-form-field>
+        </form>
+        <form [formGroup]="trinkorteSearchFormGroup">
+          <select-kneipenliste></select-kneipenliste>
+        </form>
+        <div>
+          <button mat-raised-button matStepperPrevious class="bt-back" color="primary">Back</button>
+          <button mat-raised-button matStepperNext class="bt-next" color="primary">Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+  <mat-card-actions></mat-card-actions>
+</mat-card>

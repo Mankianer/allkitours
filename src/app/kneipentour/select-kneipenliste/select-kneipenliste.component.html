@@ -1,0 +1,39 @@
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="kneipe">
+    <th mat-header-cell *matHeaderCellDef> Kneipe </th>
+    <td mat-cell *matCellDef="let trinkort">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{trinkort.title}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{trinkort.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+      </mat-expansion-panel> </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="selected">
+    <th mat-header-cell *matHeaderCellDef> Ausgewählt </th>
+    <td mat-cell *matCellDef="let trinkort">
+      <mat-checkbox [value]="trinkort.selected" labelPosition="before"></mat-checkbox></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
