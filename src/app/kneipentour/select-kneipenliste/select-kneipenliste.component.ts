@@ -70,9 +70,15 @@ export class SelectKneipenlisteComponent implements OnInit {
     this.selectedItemsEventEmitter.emit(this.selectedItems);
     console.log('update' + this.formControll);
     if (this.formControll != null) {
-      this.formControll.setValue(this.selectedItems);
+      this.formControll.setValue(this.pealSelectOf(this.selectedItems));
       this.formControll.markAsDirty();
     }
+  }
+
+  private pealSelectOf(trinkortSelects: TrinkortSelect[]): Trinkort[]{
+    return trinkortSelects.map(value => {
+      return value.trinkort;
+    });
   }
 
 }

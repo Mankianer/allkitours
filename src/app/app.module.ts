@@ -29,6 +29,8 @@ import {CookieService} from "ngx-cookie-service";
 import { ListKneipentourComponent } from './kneipentour/list-kneipentour/list-kneipentour.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import { OwnKneipentourenComponent } from './kneipentour/list-kneipentour/own-kneipentouren/own-kneipentouren.component';
+import { ViewerKneipentourComponent } from './kneipentour/viewer-kneipentour/viewer-kneipentour.component';
+import { TourstepperComponent } from './kneipentour/viewer-kneipentour/tourstepper/tourstepper.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { OwnKneipentourenComponent } from './kneipentour/list-kneipentour/own-kn
     CreateKneipentourComponent,
     SelectKneipenlisteComponent,
     ListKneipentourComponent,
-    OwnKneipentourenComponent
+    OwnKneipentourenComponent,
+    ViewerKneipentourComponent,
+    TourstepperComponent
   ],
   imports: [
     BrowserModule,
