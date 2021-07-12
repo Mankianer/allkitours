@@ -26,6 +26,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {CookieService} from "ngx-cookie-service";
+import { ListKneipentourComponent } from './kneipentour/list-kneipentour/list-kneipentour.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { OwnKneipentourenComponent } from './kneipentour/list-kneipentour/own-kneipentouren/own-kneipentouren.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import {CookieService} from "ngx-cookie-service";
     DashboardComponent,
     NavigationComponent,
     CreateKneipentourComponent,
-    SelectKneipenlisteComponent
+    SelectKneipenlisteComponent,
+    ListKneipentourComponent,
+    OwnKneipentourenComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ import {CookieService} from "ngx-cookie-service";
     MatTableModule,
     MatExpansionModule,
     MatCheckboxModule,
+    MatTabsModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

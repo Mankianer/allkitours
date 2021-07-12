@@ -26,6 +26,14 @@ export class KneipentourService {
     return newKneiptour;
   }
 
+  public getAll(): Kneipentour[]{
+    return Array.from(this.ownKneiptouren.values());
+  }
+
+  public loadKneipentour(id: string): Kneipentour | undefined{
+    return this.ownKneiptouren.get(id);
+  }
+
   private saveToCookies(){
     let text = JSON.stringify([...this.ownKneiptouren]);
     console.log(text);
