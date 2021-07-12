@@ -1,0 +1,14 @@
+<mat-stepper orientation="vertical" linear="false" #stepper>
+  <ng-template matStepperIcon="number">
+    <mat-icon>nightlife</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>nightlife</mat-icon>
+  </ng-template>
+  <mat-step>
+    <ng-template matStepLabel>Start</ng-template>
+  </mat-step>
+  <mat-step *ngFor="let trinkort of kneipentour.trinkorte">
+      <ng-template matStepLabel>{{trinkort.title}}</ng-template>
+  </mat-step>
+</mat-stepper>
