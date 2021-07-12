@@ -9,6 +9,8 @@ import {
 } from "@angular/forms";
 import {TrinkortSelect} from "../select-kneipenliste/select-kneipenliste.component";
 import {Kneipentour} from "../models/kneipentour-model";
+import {CookiesService} from "../../services/cookies.service";
+import {KneipentourService} from "../../services/kneipentour/kneipentour.service";
 
 @Component({
   selector: 'app-create-kneipentour',
@@ -21,7 +23,9 @@ export class CreateKneipentourComponent implements OnInit {
   trinkorteSearchFormGroup: FormGroup;
   descriptionFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  private kneipentour: Kneipentour = {};
+
+  constructor(private _formBuilder: FormBuilder, private kneipentourService: KneipentourService) {
 
     this.typeFormGroup = this._formBuilder.group({
       type: ['A', [Validators.required]]
@@ -51,10 +55,14 @@ export class CreateKneipentourComponent implements OnInit {
   finish(): void {
     if (this.descriptionFormGroup.valid) {
       let kneipentour: Kneipentour = {
+        id: this.kneipentour.id,
         title: this.descriptionFormGroup.get('title')?.value,
         description: this.descriptionFormGroup.get('description')?.value,
-        category: this.descriptionFormGroup.get('category')?.value
+        category: this.descriptionFormGroup.get('category')?.value,
+        trinkorte: this.trinkorteChooseFormGroup.get('trinkorte')?.value
       };
+
+      this.kneipentour = this.kneipentourService.saveKneipentour(kneipentour);
     }
   }
 

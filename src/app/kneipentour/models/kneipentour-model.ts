@@ -1,5 +1,9 @@
+import {Trinkort} from "./trinkort-model";
+
 export interface Kneipentour {
-  title: string;
+  id?: string;
+  title?: string;
   description?: string;
   category?: string;
+  trinkorte?: Trinkort[];
 }

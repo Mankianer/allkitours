@@ -25,6 +25,7 @@ import { SelectKneipenlisteComponent } from './kneipentour/select-kneipenliste/s
 import {MatTableModule} from "@angular/material/table";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatExpansionModule,
     MatCheckboxModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
