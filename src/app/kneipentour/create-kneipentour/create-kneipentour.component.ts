@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup, ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
+import {Trinkort} from "../select-kneipenliste/select-kneipenliste.component";
 
 @Component({
   selector: 'app-create-kneipentour',
@@ -18,7 +26,7 @@ export class CreateKneipentourComponent implements OnInit {
       type: ['A', [Validators.required]]
     });
     this.trinkorteChooseFormGroup = this._formBuilder.group({
-      trinkorte: [ null, []]
+      trinkorte: [[], [Validators.required, trinkortSelectValidator]]
     });
     this.trinkorteSearchFormGroup = this._formBuilder.group({
       position: [ null, []],
@@ -27,7 +35,7 @@ export class CreateKneipentourComponent implements OnInit {
       search: [''],
     });
     this.descriptionFormGroup = this._formBuilder.group({
-      titel: [ 'Unbenannte Kneipentour', [Validators.required]],
+      title: [ 'Unbenannte Kneipentour', [Validators.required]],
       description: [ '', [Validators.required]],
       category: [ '', [Validators.required]]
     });
@@ -40,4 +48,19 @@ export class CreateKneipentourComponent implements OnInit {
     // console.log('value: ' + this.firstFormGroup.get('firstCtrl')?.value);
   }
 
+}
+
+export function trinkortSelectValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    let badValues: any[] = [];
+    const forbidden = Array.isArray(control.value) && control.value.length && control.value.every((value, index, array) => {
+      if (!(value instanceof Trinkort)) {
+        badValues.push(value);
+        return false;
+      }
+      return true;
+    });
+    console.log('test: ' + {badValues: {value: control.value, values: badValues}});
+    return forbidden ? {badValues: {value: control.value, values: badValues}} : null;
+  };
 }

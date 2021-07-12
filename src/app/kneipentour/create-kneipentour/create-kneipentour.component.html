@@ -4,7 +4,7 @@
   </mat-card-header>
   <button mat-raised-button (click)="finish()">Test</button>
   <mat-card-content>
-<!-- User Input -->
+    <!-- User Input -->
     <mat-stepper #stepper linear="true">
       <mat-step [stepControl]="typeFormGroup">
         <form [formGroup]="typeFormGroup" id="typeForm">
@@ -18,8 +18,9 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="trinkorteChooseFormGroup" label="Fill out your address">
+      <mat-step [stepControl]="trinkorteChooseFormGroup">
         <form [formGroup]="trinkorteSearchFormGroup">
+          <ng-template matStepLabel>Erstelle Tour</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Standort</mat-label>
             <input matInput formControlName="position">
@@ -37,13 +38,36 @@
             <mat-icon matPrefix>search</mat-icon>
           </mat-form-field>
         </form>
-        <form [formGroup]="trinkorteSearchFormGroup">
-          <select-kneipenliste></select-kneipenliste>
+        <form [formGroup]="trinkorteChooseFormGroup">
+          <select-kneipenliste
+            [formControll]="trinkorteChooseFormGroup.get('trinkorte')"></select-kneipenliste>
         </form>
         <div>
           <button mat-raised-button matStepperPrevious class="bt-back" color="primary">Back</button>
           <button mat-raised-button matStepperNext class="bt-next" color="primary">Next</button>
         </div>
+      </mat-step>
+      <mat-step [stepControl]="descriptionFormGroup">
+        <form [formGroup]="descriptionFormGroup">
+          <ng-template matStepLabel>Füge Beschreibung hinzu</ng-template>
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Beschreibung</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Kategorie</mat-label>
+            <input matInput formControlName="category">
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperPrevious class="bt-back" color="primary">Back
+            </button>
+            <button mat-raised-button matStepperNext color="primary" class="bt-next">Next</button>
+          </div>
+        </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>

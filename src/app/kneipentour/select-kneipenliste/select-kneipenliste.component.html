@@ -1,6 +1,7 @@
 <mat-form-field appearance="standard">
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  <mat-icon matSuffix>filter_list</mat-icon>
 </mat-form-field>
 
 <table mat-table [dataSource]="dataSource">

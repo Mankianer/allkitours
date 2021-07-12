@@ -55,7 +55,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatRadioModule,
     MatTableModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

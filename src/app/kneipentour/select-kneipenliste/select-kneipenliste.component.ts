@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {
+  AbstractControl,
+  FormControl, FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 
-export interface Trinkort {
-  title: string;
-  description: string;
-  selected: boolean;
+export class Trinkort {
+  constructor(public title: string, public description: string = '', public selected = false) {
+  }
 }
 
 const TRINKORTE_DEMO_DATA: Trinkort[] = [
-  {title: 'Kneipe 1', description: 'text text', selected: false},
-  {title: 'Kneipe 2', description: 'text text', selected: false},
-  {title: 'Kneipe 3', description: 'text text', selected: false},
-  {title: 'Kneipe 4', description: 'text text', selected: false},
-  {title: 'Kneipe 5', description: 'text text', selected: false},
-  {title: 'Kneipe 6', description: 'text text', selected: false}
+  new Trinkort('Kneipe 1'),
+  new Trinkort('Kneipe 2'),
+  new Trinkort('Kneipe 3'),
+  new Trinkort('Kneipe 4'),
+  new Trinkort('Kneipe 5'),
+  new Trinkort('Kneipe 6'),
+  new Trinkort('Kneipe 7'),
 ];
 
 @Component({
@@ -26,25 +33,44 @@ export class SelectKneipenlisteComponent implements OnInit {
   displayedColumns: string[] = ['kneipe', 'selected'];
   dataSource = new MatTableDataSource(TRINKORTE_DEMO_DATA);
 
-  selectedItems: Trinkort[] = [];
+  @Input()
+  formControll: AbstractControl | null = new FormControl(null);
 
-  constructor() { }
+  selectedItems: Trinkort[] = [];
+  @Output() selectedItemsEventEmitter: EventEmitter<Trinkort[]> = new EventEmitter<Trinkort[]>();
+
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }
+
+  // @Input()
+  // public setFormGroup(formGroup: FormGroup): void{
+  //   formGroup.registerControl('trinkorte', this.formControll);
+  // }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  updateItem(item: Trinkort, event: MatCheckboxChange): void{
+  async updateItem(item: Trinkort, event: MatCheckboxChange): Promise<void> {
     let index = this.selectedItems.indexOf(item);
     item.selected = event.checked;
-    if(item.selected){
-      if(index == -1) this.selectedItems.push(item);
-    }else {
-      if(index != -1) this.selectedItems.splice(index, 1);
+    if (item.selected) {
+      if (index == -1) this.selectedItems.push(item);
+    } else {
+      if (index != -1) this.selectedItems.splice(index, 1);
+    }
+    this.selectedItemsEventEmitter.emit(this.selectedItems);
+    console.log('update' + this.formControll);
+    if (this.formControll != null) {
+      this.formControll.setValue(this.selectedItems);
+      this.formControll.markAsDirty();
     }
   }
 
