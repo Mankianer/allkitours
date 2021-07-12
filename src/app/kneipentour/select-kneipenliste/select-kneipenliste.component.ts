@@ -8,20 +8,21 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
+import {Trinkort} from "../models/trinkort-model";
 
-export class Trinkort {
-  constructor(public title: string, public description: string = '', public selected = false) {
+export class TrinkortSelect {
+  constructor(public trinkort: Trinkort, public selected = false) {
   }
 }
 
-const TRINKORTE_DEMO_DATA: Trinkort[] = [
-  new Trinkort('Kneipe 1'),
-  new Trinkort('Kneipe 2'),
-  new Trinkort('Kneipe 3'),
-  new Trinkort('Kneipe 4'),
-  new Trinkort('Kneipe 5'),
-  new Trinkort('Kneipe 6'),
-  new Trinkort('Kneipe 7'),
+const TRINKORTE_DEMO_DATA: TrinkortSelect[] = [
+  new TrinkortSelect({title: 'Kneipe 1'}),
+  new TrinkortSelect({title: 'Kneipe 2'}),
+  new TrinkortSelect({title: 'Kneipe 3'}),
+  new TrinkortSelect({title: 'Kneipe 4'}),
+  new TrinkortSelect({title: 'Kneipe 5'}),
+  new TrinkortSelect({title: 'Kneipe 6'}),
+  new TrinkortSelect({title: 'Kneipe 7'})
 ];
 
 @Component({
@@ -36,8 +37,8 @@ export class SelectKneipenlisteComponent implements OnInit {
   @Input()
   formControll: AbstractControl | null = new FormControl(null);
 
-  selectedItems: Trinkort[] = [];
-  @Output() selectedItemsEventEmitter: EventEmitter<Trinkort[]> = new EventEmitter<Trinkort[]>();
+  selectedItems: TrinkortSelect[] = [];
+  @Output() selectedItemsEventEmitter: EventEmitter<TrinkortSelect[]> = new EventEmitter<TrinkortSelect[]>();
 
 
   constructor() {
@@ -58,7 +59,7 @@ export class SelectKneipenlisteComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  async updateItem(item: Trinkort, event: MatCheckboxChange): Promise<void> {
+  async updateItem(item: TrinkortSelect, event: MatCheckboxChange): Promise<void> {
     let index = this.selectedItems.indexOf(item);
     item.selected = event.checked;
     if (item.selected) {

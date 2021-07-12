@@ -7,7 +7,8 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {Trinkort} from "../select-kneipenliste/select-kneipenliste.component";
+import {TrinkortSelect} from "../select-kneipenliste/select-kneipenliste.component";
+import {Kneipentour} from "../models/kneipentour-model";
 
 @Component({
   selector: 'app-create-kneipentour',
@@ -29,23 +30,32 @@ export class CreateKneipentourComponent implements OnInit {
       trinkorte: [[], [Validators.required, trinkortSelectValidator]]
     });
     this.trinkorteSearchFormGroup = this._formBuilder.group({
-      position: [ null, []],
+      position: [null, []],
       options: [null],
       filters: [null],
       search: [''],
     });
     this.descriptionFormGroup = this._formBuilder.group({
-      title: [ 'Unbenannte Kneipentour', [Validators.required]],
-      description: [ '', [Validators.required]],
-      category: [ '', [Validators.required]]
+      title: ['Unbenannte Kneipentour', [Validators.required]],
+      description: ['', [Validators.required]],
+      category: ['', [Validators.required]]
     });
   }
 
   ngOnInit() {
+    this.descriptionFormGroup.statusChanges.subscribe(value => {
+      if (value === 'VALID') this.finish();
+    });
   }
 
-  finish(): void{
-    // console.log('value: ' + this.firstFormGroup.get('firstCtrl')?.value);
+  finish(): void {
+    if (this.descriptionFormGroup.valid) {
+      let kneipentour: Kneipentour = {
+        title: this.descriptionFormGroup.get('title')?.value,
+        description: this.descriptionFormGroup.get('description')?.value,
+        category: this.descriptionFormGroup.get('category')?.value
+      };
+    }
   }
 
 }
@@ -54,7 +64,7 @@ export function trinkortSelectValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     let badValues: any[] = [];
     const forbidden = Array.isArray(control.value) && control.value.length && control.value.every((value, index, array) => {
-      if (!(value instanceof Trinkort)) {
+      if (!(value instanceof TrinkortSelect)) {
         badValues.push(value);
         return false;
       }

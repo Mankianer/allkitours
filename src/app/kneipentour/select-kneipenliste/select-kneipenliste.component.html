@@ -13,10 +13,10 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{trinkort.title}}
+            {{trinkort.trinkort.title}}
           </mat-panel-title>
           <mat-panel-description>
-            {{trinkort.description}}
+            {{trinkort.trinkort.description}}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
@@ -41,5 +41,5 @@
 <div class="spacing"></div>
 <h3>Ausgewählte Kneipen:</h3>
 <mat-list>
-  <mat-list-item *ngFor="let item of selectedItems">{{item.title}}</mat-list-item>
+  <mat-list-item *ngFor="let item of selectedItems">{{item.trinkort.title}}</mat-list-item>
 </mat-list>
