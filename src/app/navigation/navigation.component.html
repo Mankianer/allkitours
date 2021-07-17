@@ -4,7 +4,7 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list style="height: 100%">
       <a mat-list-item href="/dashboard">Dashboard</a>
       <a mat-list-item href="#" disabled>Kneipentour suchen</a>
       <a mat-list-item href="kneipentour/list">Kneipentour Liste</a>
@@ -13,7 +13,7 @@
       <a mat-list-item href="#" disabled>Kneipen Suchen</a>
       <a mat-list-item href="#" disabled>Session Verwalten</a>
       <a mat-list-item href="#" disabled>Session Verlauf</a>
-      <a mat-list-item href="#" disabled>Anmelden / Profil</a>
+      <a mat-list-item href="/login">Anmelden / Profil</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

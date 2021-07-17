@@ -31,6 +31,8 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { OwnKneipentourenComponent } from './kneipentour/list-kneipentour/own-kneipentouren/own-kneipentouren.component';
 import { ViewerKneipentourComponent } from './kneipentour/viewer-kneipentour/viewer-kneipentour.component';
 import { TourstepperComponent } from './kneipentour/viewer-kneipentour/tourstepper/tourstepper.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { TourstepperComponent } from './kneipentour/viewer-kneipentour/tourstepp
     ListKneipentourComponent,
     OwnKneipentourenComponent,
     ViewerKneipentourComponent,
-    TourstepperComponent
+    TourstepperComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,7 @@ import { TourstepperComponent } from './kneipentour/viewer-kneipentour/tourstepp
     MatTableModule,
     MatExpansionModule,
     MatCheckboxModule,
-    MatTabsModule,
+    MatTabsModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
