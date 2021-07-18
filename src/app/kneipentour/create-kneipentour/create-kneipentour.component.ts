@@ -78,7 +78,6 @@ export function trinkortSelectValidator(): ValidatorFn {
       }
       return true;
     });
-    console.log('test: ' + {badValues: {value: control.value, values: badValues}});
     return forbidden ? {badValues: {value: control.value, values: badValues}} : null;
   };
 }

@@ -17,6 +17,10 @@ export class CookiesService {
     return this.cookieService.get(key);
   }
 
+  public check(key: string): boolean {
+    return this.cookieService.check(key);
+  }
+
   public delete(key: string): void {
     this.cookieService.delete(key, '/');
   }

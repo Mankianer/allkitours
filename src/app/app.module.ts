@@ -32,6 +32,7 @@ import { OwnKneipentourenComponent } from './kneipentour/list-kneipentour/own-kn
 import { ViewerKneipentourComponent } from './kneipentour/viewer-kneipentour/viewer-kneipentour.component';
 import { TourstepperComponent } from './kneipentour/viewer-kneipentour/tourstepper/tourstepper.component';
 import { LoginComponent } from './login/login.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { LoginComponent } from './login/login.component';
     MatTableModule,
     MatExpansionModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

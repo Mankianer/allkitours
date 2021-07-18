@@ -1,8 +1,26 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Kneipentour erstellen</mat-card-title>
+    <mat-card-title>Login</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <button mat-raised-button (click)="userService.logout()">Run</button>
+    <div *ngIf="!userService.isLoggedIn()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [formControl]="usernameControl" #username>
+        <mat-error *ngIf="usernameControl.invalid">min. 3 Zeichen</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Passwort</mat-label>
+        <input matInput placeholder="Password" type="password" [formControl]="passwordControl"
+               #password>
+        <mat-error *ngIf="passwordControl.invalid">min. 8 Zeichen</mat-error>
+      </mat-form-field>
+    </div>
   </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="!userService.isLoggedIn()" mat-raised-button color="accent" (click)="login()">Login
+    </button>
+    <button *ngIf="userService.isLoggedIn()" mat-raised-button color="accent" (click)="logout()">Logout
+    </button>
+  </mat-card-actions>
 </mat-card>
